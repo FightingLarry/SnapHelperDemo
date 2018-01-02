@@ -1,4 +1,4 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

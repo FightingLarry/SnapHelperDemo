@@ -1,9 +1,9 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -11,7 +11,7 @@ import android.view.View;
  * @author larryycliu on 2018/1/1.
  */
 
-public class BlackLinearSnapHelper extends LinearSnapHelper {
+public class BlackPagerSnapHelper extends PagerSnapHelper {
 
     // Orientation helpers are lazily created per LayoutManager.
     @Nullable
@@ -19,9 +19,9 @@ public class BlackLinearSnapHelper extends LinearSnapHelper {
     @Nullable
     private OrientationHelper mHorizontalHelper;
 
-    private SnapHelpListener mSnapHelpListener;
+    private PagerSnapHelpListener mSnapHelpListener;
 
-    public BlackLinearSnapHelper(SnapHelpListener listener) {
+    public BlackPagerSnapHelper(PagerSnapHelpListener listener) {
         mSnapHelpListener = listener;
     }
 
@@ -38,6 +38,7 @@ public class BlackLinearSnapHelper extends LinearSnapHelper {
 
     private View findCenterView(RecyclerView.LayoutManager layoutManager,
                                 OrientationHelper helper) {
+
         int childCount = layoutManager.getChildCount();
         if (childCount == 0) {
             return null;
@@ -57,20 +58,20 @@ public class BlackLinearSnapHelper extends LinearSnapHelper {
 
             if (mSnapHelpListener != null) {
                 int position = layoutManager.getPosition(child);
-                if (mSnapHelpListener.canCenter(position)) {
-                    int childCenter = helper.getDecoratedStart(child) +
-                            (helper.getDecoratedMeasurement(child) / 2);
-                    int absDistance = Math.abs(childCenter - center);
-
-                    /** if child center is closer than previous closest, set it as closest  **/
-                    if (absDistance < absClosest) {
-                        absClosest = absDistance;
-                        closestChild = child;
-                    }
-                }
+//                if (mSnapHelpListener.nextPosition(position)) {
+//                    int childCenter = helper.getDecoratedStart(child)
+//                            + (helper.getDecoratedMeasurement(child) / 2);
+//                    int absDistance = Math.abs(childCenter - center);
+//
+//                    /** if child center is closer than previous closest, set it as closest  **/
+//                    if (absDistance < absClosest) {
+//                        absClosest = absDistance;
+//                        closestChild = child;
+//                    }
+//                }
             } else {
-                int childCenter = helper.getDecoratedStart(child) +
-                        (helper.getDecoratedMeasurement(child) / 2);
+                int childCenter = helper.getDecoratedStart(child)
+                        + (helper.getDecoratedMeasurement(child) / 2);
                 int absDistance = Math.abs(childCenter - center);
 
                 /** if child center is closer than previous closest, set it as closest  **/
@@ -79,10 +80,7 @@ public class BlackLinearSnapHelper extends LinearSnapHelper {
                     closestChild = child;
                 }
             }
-
         }
-
-
         return closestChild;
     }
 

@@ -1,4 +1,4 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import org.junit.Test;
 

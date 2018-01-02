@@ -1,4 +1,4 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import android.graphics.PointF;
 import android.support.annotation.NonNull;

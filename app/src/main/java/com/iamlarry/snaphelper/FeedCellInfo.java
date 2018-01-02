@@ -1,4 +1,4 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 /**
  * @author larryycliu on 2018/1/1.

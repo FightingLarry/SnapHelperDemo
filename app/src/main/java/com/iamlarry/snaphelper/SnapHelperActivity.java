@@ -1,4 +1,4 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -18,10 +18,10 @@ import android.view.WindowManager;
 
 import java.util.ArrayList;
 
-import static com.czm.snaphelperdemo.SnapHelperAdapter.TYPE_IMAGE;
-import static com.czm.snaphelperdemo.SnapHelperAdapter.TYPE_STATUS;
-import static com.czm.snaphelperdemo.SnapHelperAdapter.TYPE_TEXT;
-import static com.czm.snaphelperdemo.SnapHelperAdapter.TYPE_USER;
+import static com.iamlarry.snaphelper.SnapHelperAdapter.TYPE_IMAGE;
+import static com.iamlarry.snaphelper.SnapHelperAdapter.TYPE_STATUS;
+import static com.iamlarry.snaphelper.SnapHelperAdapter.TYPE_TEXT;
+import static com.iamlarry.snaphelper.SnapHelperAdapter.TYPE_USER;
 
 public class SnapHelperActivity extends AppCompatActivity implements SnapHelperAdapter.OnItemClickListener {
     private static final String TAG = "SnapHelperActivity";
@@ -50,13 +50,15 @@ public class SnapHelperActivity extends AppCompatActivity implements SnapHelperA
         initData();
         mAdapter = new SnapHelperAdapter(this, mData, this);
         mRecyclerView.setAdapter(mAdapter);
+        //方法start
 //        方法1：
-//        mSnapHelper = new BlackLinearSnapHelper(new SnapHelpListener() {
-//            @Override
-//            public boolean canCenter(int position) {
-//                return mData.get(position).canCenter();
-//            }
-//        });
+        mSnapHelper = new BlackLinearSnapHelper(new BlackLinearSnapHelper.SnapHelpListener() {
+            @Override
+            public boolean canCenter(int position) {
+                return mData.get(position).canCenter();
+            }
+        });
+        mSnapHelper.attachToRecyclerView(mRecyclerView);
 //        方法2：
 //        mSnapHelper = new BlackPagerSnapHelper(new PagerSnapHelpListener() {
 //            @Override
@@ -71,7 +73,9 @@ public class SnapHelperActivity extends AppCompatActivity implements SnapHelperA
 //        });
 //        mSnapHelper.attachToRecyclerView(mRecyclerView);
 //        方法3：事件拦截
-        mRecyclerView.addOnItemTouchListener(new OnBlackItemTouchListener(this));
+//        mRecyclerView.addOnItemTouchListener(new OnBlackItemTouchListener(this));
+        //方法end
+
         mEmptyHeaderView = new View(SnapHelperActivity.this);
         mEmptyHeaderView.setPivotY(0);
         mAdapter.addHeaderView(mEmptyHeaderView);

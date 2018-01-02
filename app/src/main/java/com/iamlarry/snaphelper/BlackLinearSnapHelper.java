@@ -1,28 +1,29 @@
-package com.czm.snaphelperdemo;
+package com.iamlarry.snaphelper;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 /**
  * @author larryycliu on 2018/1/1.
  */
 
-public class BlackPagerSnapHelper extends PagerSnapHelper {
+public class BlackLinearSnapHelper extends LinearSnapHelper {
 
+    private static final String TAG = "BlackLinearSnapHelper";
     // Orientation helpers are lazily created per LayoutManager.
     @Nullable
     private OrientationHelper mVerticalHelper;
     @Nullable
     private OrientationHelper mHorizontalHelper;
 
-    private PagerSnapHelpListener mSnapHelpListener;
+    private SnapHelpListener mSnapHelpListener;
 
-    public BlackPagerSnapHelper(PagerSnapHelpListener listener) {
+    public BlackLinearSnapHelper(SnapHelpListener listener) {
         mSnapHelpListener = listener;
     }
 
@@ -39,7 +40,6 @@ public class BlackPagerSnapHelper extends PagerSnapHelper {
 
     private View findCenterView(RecyclerView.LayoutManager layoutManager,
                                 OrientationHelper helper) {
-
         int childCount = layoutManager.getChildCount();
         if (childCount == 0) {
             return null;
@@ -59,20 +59,20 @@ public class BlackPagerSnapHelper extends PagerSnapHelper {
 
             if (mSnapHelpListener != null) {
                 int position = layoutManager.getPosition(child);
-//                if (mSnapHelpListener.nextPosition(position)) {
-//                    int childCenter = helper.getDecoratedStart(child)
-//                            + (helper.getDecoratedMeasurement(child) / 2);
-//                    int absDistance = Math.abs(childCenter - center);
-//
-//                    /** if child center is closer than previous closest, set it as closest  **/
-//                    if (absDistance < absClosest) {
-//                        absClosest = absDistance;
-//                        closestChild = child;
-//                    }
-//                }
+                if (mSnapHelpListener.canCenter(position)) {
+                    int childCenter = helper.getDecoratedStart(child) +
+                            (helper.getDecoratedMeasurement(child) / 2);
+                    int absDistance = Math.abs(childCenter - center);
+
+                    /** if child center is closer than previous closest, set it as closest  **/
+                    if (absDistance < absClosest) {
+                        absClosest = absDistance;
+                        closestChild = child;
+                    }
+                }
             } else {
-                int childCenter = helper.getDecoratedStart(child)
-                        + (helper.getDecoratedMeasurement(child) / 2);
+                int childCenter = helper.getDecoratedStart(child) +
+                        (helper.getDecoratedMeasurement(child) / 2);
                 int absDistance = Math.abs(childCenter - center);
 
                 /** if child center is closer than previous closest, set it as closest  **/
@@ -81,7 +81,10 @@ public class BlackPagerSnapHelper extends PagerSnapHelper {
                     closestChild = child;
                 }
             }
+
         }
+
+        Log.w(TAG, closestChild == null ? "null" : ("absClosest:" + absClosest));
         return closestChild;
     }
 
@@ -102,5 +105,10 @@ public class BlackPagerSnapHelper extends PagerSnapHelper {
         }
         return mHorizontalHelper;
     }
+
+    public interface SnapHelpListener {
+        boolean canCenter(int position);
+    }
+
 
 }
