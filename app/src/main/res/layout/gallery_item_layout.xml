@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="220dp"
     android:layout_margin="8dp"
-    android:background="#aaaaaa"
-    android:orientation="vertical">
+    android:background="#aaaaaa">
 
     <ImageView
         android:id="@+id/image"
@@ -19,6 +18,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
+        android:gravity="bottom"
         android:text="111" />
 
-</LinearLayout>
+    <com.iamlarry.snaphelper.TimelineBlackMaskView
+        android:id="@+id/timeline_black_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

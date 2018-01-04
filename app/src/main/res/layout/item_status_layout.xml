@@ -1,21 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:layout_height="48dp"
+    android:background="#000000"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:minHeight="5dp">
+
+    <ImageView
+        android:id="@+id/status_cell_share_icon"
+        android:layout_width="24dp"
+        android:layout_height="60dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:contentDescription="@null"
+        android:paddingBottom="16dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="16dp"
+        android:src="@drawable/timeline_cell_black_share" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/status_cell_share_num"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/status_cell_share_icon"
+        android:layout_toStartOf="@id/status_cell_share_icon"
+        android:gravity="center_vertical|end"
+        android:maxLines="1"
+        android:textColor="@color/timeline_black_text"
+        android:textSize="12sp" />
+
+
+    <FrameLayout
+        android:id="@+id/status_cell_favor_icon_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toStartOf="@+id/status_cell_share_num">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/status_cell_favor_anim_icon"
+            android:layout_width="38dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            app:lottie_fileName="timeline_fav.json" />
+
+        <ImageView
+            android:id="@+id/status_cell_favor_icon"
+            android:layout_width="24dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:paddingBottom="16dp"
+            android:paddingLeft="3dp"
+            android:paddingRight="3dp"
+            android:paddingTop="16dp"
+            android:src="@drawable/timeline_cell_black_fav" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/status_cell_favor_num"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/status_cell_favor_icon_layout"
+        android:gravity="center_vertical|end"
+        android:maxLines="1"
+        android:textColor="@color/timeline_black_text"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/status_cell_comment_icon"
+        android:layout_width="24dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/status_cell_favor_icon_layout"
+        android:contentDescription="@null"
+        android:paddingBottom="16dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="16dp"
+        android:src="@drawable/timeline_cell_black_comment" />
+
+
+    <TextView
+        android:id="@+id/status_cell_comment_num"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/status_cell_comment_icon"
+        android:layout_toStartOf="@id/status_cell_comment_icon"
+        android:gravity="center_vertical|end"
+        android:textColor="@color/timeline_black_text"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/status_cell_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toLeftOf="@id/status_cell_comment_num"
+        android:layout_toStartOf="@id/status_cell_comment_num"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/timeline_black_text"
+        android:textSize="12sp" />
 
     <View
+        android:id="@+id/status_cell_divider"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/colorAccent" />
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:background="@color/timeline_song_background_dark_theme" />
 
-
-</LinearLayout>
+    <com.iamlarry.snaphelper.TimelineBlackMaskView
+        android:id="@+id/timeline_black_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

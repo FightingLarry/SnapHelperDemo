@@ -6,6 +6,10 @@ package com.iamlarry.snaphelper;
 
 public class FeedCellInfo {
 
+    public int feedId;
+
+    public int id;
+
     public String text;
 
     public int picId;
@@ -16,4 +20,9 @@ public class FeedCellInfo {
         return type == SnapHelperAdapter.TYPE_IMAGE;
     }
 
+    @Override
+    public String toString() {
+        return "id:" + id + ",feedId:" + feedId + ",text:" + text;
+
+    }
 }

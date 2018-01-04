@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+    <color name="timeline_black_text">#FFFFFF</color>
+    <color name="timeline_song_background_dark_theme">#0AFFFFFF</color>
+    <color name="timeline_black_mask">#bb000000</color>
 </resources>
